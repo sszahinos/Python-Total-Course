@@ -1,5 +1,4 @@
-from Ticket import Ticket
-from Sections import Section
+from Classes.Ticket import Ticket
 
 
 def decorate_ticket(ticket: Ticket):

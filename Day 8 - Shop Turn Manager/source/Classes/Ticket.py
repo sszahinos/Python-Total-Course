@@ -1,7 +1,7 @@
 """
 Ticket object that contains section and num
 """
-from Sections import Section
+from Enums.Sections import Section
 
 class Ticket:
     def __init__(self, section: Section, num):
