@@ -1,18 +1,19 @@
 """
 Class with a ticket generator.
 """
+from Enums.Sections import Section
+from Exceptions.NoTicketsLeft import NoTicketsLeft
+
 
 class TurnGenerator:
 
-    def __init__(self, section: str, max_turns: int):
-        self.section = section
-        self.max_turns = max_turns
+    def __init__(self, section: Section):
+        self.section = section.value["name"]
+        self.max_turns = section.value["max_turns"]
+        self.current_turn = 0
 
     def get_turn(self):
-        try:
-            for num in range(1, self.max_turns + 1):
-                yield num
-        except StopIteration:
-            print("No more turn tickets left.")
-            return -1
+        for num in range(1, self.max_turns + 1):
+            self.current_turn += 1
+            yield num
 
