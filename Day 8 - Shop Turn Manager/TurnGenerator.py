@@ -16,5 +16,3 @@ class TurnGenerator:
             print("No more turn tickets left.")
             return -1
 
-    def get_section(self):
-        return self.section
