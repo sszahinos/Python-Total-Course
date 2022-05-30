@@ -2,8 +2,6 @@
 Class with a ticket generator.
 """
 from Enums.Sections import Section
-from Exceptions.NoTicketsLeft import NoTicketsLeft
-
 
 class TurnGenerator:
 

@@ -46,5 +46,5 @@ def show_sections(sections):
 def ask_section(sections) -> int:  # Assuming the screen will show only the correct options
     return input("Select the section to go --> ")
 
-
-start()
+if __name__ == '__main__':
+    start()
