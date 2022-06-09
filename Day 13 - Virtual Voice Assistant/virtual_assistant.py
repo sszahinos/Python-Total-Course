@@ -1,5 +1,5 @@
-"""import pyttsx3 as ptsx
-import pywhatkit as pwk
+import pyttsx3 as ptsx
+"""import pywhatkit as pwk
 import yfinance as yf
 import pyjokes as pj
 import webbrowser
@@ -7,12 +7,12 @@ import datetime
 import wikipedia"""
 import speech_recognition as sr
 
-#LANG = 'es-ES'
-LANG = 'ca'
+LANG = 'es-ES'
+#LANG = 'ca'
 
 
 # audio -> text
-def transform_audio_text():
+def transform_audio2text():
     # Initializing recognizer
     rec = sr.Recognizer()
 
@@ -45,5 +45,11 @@ def transform_audio_text():
             print("Unexpected error")
             return "I keep waiting"
 
+def transform_text2audio(message):
+    engine = ptsx.init()
 
-transform_audio_text()
+    # speak
+    engine.say(message)
+    engine.runAndWait()
+
+transform_text2audio(transform_audio2text())
