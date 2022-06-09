@@ -10,6 +10,10 @@ import speech_recognition as sr
 LANG = 'es-ES'
 #LANG = 'ca'
 
+id_es_es_1 = "id=HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_ES-ES_HELENA_11.0"
+id_en_us_1 = "id=HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_ZIRA_11.0"
+id_en_us_2 = "id=HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_DAVID_11.0"
+
 
 # audio -> text
 def transform_audio2text():
@@ -47,9 +51,16 @@ def transform_audio2text():
 
 def transform_text2audio(message):
     engine = ptsx.init()
+    engine.setProperty('voice', id_es_es_1)
 
     # speak
     engine.say(message)
     engine.runAndWait()
 
 transform_text2audio(transform_audio2text())
+"""
+engine = ptsx.init()
+for voice in engine.getProperty('voices'):
+    print(voice)
+"""
+
