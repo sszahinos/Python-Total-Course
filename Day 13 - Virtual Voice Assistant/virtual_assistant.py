@@ -6,9 +6,9 @@ import webbrowser
 import datetime
 import wikipedia"""
 import speech_recognition as sr
-import pyaudio
 
-LANG = 'es-ES'
+#LANG = 'es-ES'
+LANG = 'ca'
 
 
 # audio -> text
