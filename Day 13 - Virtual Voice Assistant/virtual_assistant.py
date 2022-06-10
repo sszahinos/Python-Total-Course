@@ -129,7 +129,7 @@ def start_assistant():
             pwk.playonyt(request)
         elif 'chiste' in request:
             transform_text2audio(pj.get_joke(language='es', category="all"))
-        elif 'precio de las acciones' in request:
+        elif 'el precio de la acción' in request or 'cuánto vale' in request:
             stock = request.split("de")[-1].strip()
             wallet = {'apple': 'APPL', 'amazon': 'AMZN', 'google': 'GOOGL'}
             try:
