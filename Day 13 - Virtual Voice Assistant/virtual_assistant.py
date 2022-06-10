@@ -1,7 +1,7 @@
 import pyttsx3 as ptsx
-# import pywhatkit as pwk
-# import yfinance as yf
-# import pyjokes as pj
+import pywhatkit as pwk
+import yfinance as yf
+import pyjokes as pj
 import webbrowser
 import datetime
 import wikipedia
@@ -99,7 +99,6 @@ def start_assistant():
     ask = True
     tell_greetings()
     while ask:
-        request = ""
         request = transform_audio2text().lower()
         print(request)
         if 'salir' in request:
@@ -111,7 +110,8 @@ def start_assistant():
         elif 'abrir navegador' in request:
             transform_text2audio("Vamos a abrir tu navegador")
             webbrowser.open('https://www.google.es')
-        elif 'qué día es' or 'en qué día estamos' in request:
+        elif 'qué día es' in request or 'en qué día estamos' in request:
+            print("entra")
             transform_text2audio(get_day())
         elif 'qué hora es' in request:
             transform_text2audio(get_hour())
@@ -120,6 +120,25 @@ def start_assistant():
             wikipedia.set_lang('es')
             result = wikipedia.summary(request, sentences=1)
             transform_text2audio(f"Wikipedia dice esto sobre {request}: {result}")
+        elif 'busca en google' in request:
+            request = request.replace('busca en google', '')
+            transform_text2audio(f"Estos son los resultados de {request}:")
+            pwk.search(request)
+        elif 'abre el video de ' in request:
+            request = request.replace('busca en google', '')
+            pwk.playonyt(request)
+        elif 'chiste' in request:
+            transform_text2audio(pj.get_joke(language='es', category="all"))
+        elif 'precio de las acciones' in request:
+            stock = request.split("de")[-1].strip()
+            wallet = {'apple': 'APPL', 'amazon': 'AMZN', 'google': 'GOOGL'}
+            try:
+                stock_searched = wallet[stock]
+                stock_searched = yf.Ticker(stock_searched)
+                current_price = stock_searched.info['regularMarketPrice']
+                transform_text2audio(f"La acción {stock} cotiza en {current_price}")
+            except:
+                transform_text2audio("No he podido encontrar esa acción")
 
 
 start_assistant()
